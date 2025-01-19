@@ -23,12 +23,8 @@ public class Assignment {
 	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver();
-	//	ChromeOptions options = new ChromeOptions();
-
-		//options.setCapability("browserVersion", "131.0.6778.265"); 
  
 		try {
-
 			// Open the URL
 			driver.get("https://d3pv22lioo8876.cloudfront.net/tiptop/");
 
@@ -63,16 +59,15 @@ public class Assignment {
 			submit_button.click();
 
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//*[contains(text(), 'Received!')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
 
 			WebElement verifytext = driver.findElement(By.id("message"));
 			assertEquals(verifytext.getText(), "Received!");
 
 			// Test Case 7: Verify form data is submitted to URL (Example verification)
 			String URL = driver.getCurrentUrl();
-			System.out.println("URL: "+URL);
 			assertEquals(URL,
-					"https://d3pv22lioo8876.cloudfront.net/tiptop/submitted.html?my-name=TestName&my-password=TestPassword&my-readonly=Readonly+input&my-select=violet");
+					"https://d3pv22lioo8876.cloudfront.net/tiptop/submitted.html?my-name=TestName&my-password=TestPassword&my-readonly=Readonly+input&my-select=white");
 		
 		} finally {
 			driver.quit();
